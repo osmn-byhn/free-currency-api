@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import requests
 from bs4 import BeautifulSoup
 
@@ -18,7 +18,11 @@ def fetch_exchange_rate(base_currency, target_currency):
     else:
         return None
 
-@app.route('/exchange-rate', methods=['GET'])
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/api', methods=['GET'])
 def get_rate():
     base_currency = request.args.get('base', 'EUR')
     target_currency = request.args.get('target', 'TRY')
