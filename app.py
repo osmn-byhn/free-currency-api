@@ -24,8 +24,8 @@ def home():
 
 @app.route('/api', methods=['GET'])
 def get_rate():
-    base_currency = request.args.get('base', 'EUR')
-    target_currency = request.args.get('target', 'TRY')
+    base_currency = request.args.get('base')
+    target_currency = request.args.get('target')
     rate = fetch_exchange_rate(base_currency, target_currency)
 
     if rate:
